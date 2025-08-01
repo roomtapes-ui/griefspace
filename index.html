@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GriefSpace</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(to bottom, #f3e7f3, #fdf0f5);
+            color: #333;
+        }
+
+        header {
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: #5f4b8b;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #7a6c85;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #704d85;
+        }
+
+        .hero button {
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            border: none;
+            background-color: #d8b4e2;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .how-it-helps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 2rem 1rem;
+        }
+
+        .help-box {
+            flex: 1 1 250px;
+            background-color: #fef6fc;
+            margin: 1rem;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .help-box h3 {
+            color: #8e6fa5;
+        }
+
+        .testimonials {
+            padding: 2rem 1rem;
+            background-color: #fff0f6;
+            text-align: center;
+        }
+
+        .testimonial {
+            margin: 1rem auto;
+            padding: 1rem;
+            max-width: 600px;
+            font-style: italic;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .email-signup {
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+
+        .email-signup input[type="email"] {
+            padding: 0.75rem;
+            font-size: 1rem;
+            margin-right: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 250px;
+        }
+
+        .email-signup button {
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            border: none;
+            background-color: #d8b4e2;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.9rem;
+            color: #999;
+            background-color: #f3e7f3;
+        }
+
+        @media (max-width: 768px) {
+            .how-it-helps {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>GriefSpace</h1>
+        <p>You’re not alone. Ever.</p>
+    </header>
+    <section class="hero">
+        <h2>A safe space to grieve, reflect, and connect.</h2>
+        <button>Start Journaling</button>
+    </section>
+    <section class="how-it-helps">
+        <div class="help-box">
+            <h3>✍️ Journal Privately</h3>
+            <p>Write what's on your mind in a personal, non-judgmental space.</p>
+        </div>
+        <div class="help-box">
+            <h3>🤖 Talk to the AI</h3>
+            <p>Vent, reflect, or ask questions to our gentle, grief-aware AI assistant.</p>
+        </div>
+        <div class="help-box">
+            <h3>🌱 Join the Community</h3>
+            <p>Find others who understand, and share your journey when you're ready.</p>
+        </div>
+    </section>
+    <section class="testimonials">
+        <div class="testimonial">
+            “This is the first place I’ve felt understood since my mom died.”
+        </div>
+        <div class="testimonial">
+            “I don’t have to explain myself here. It just gets it.”
+        </div>
+    </section>
+    <section class="email-signup">
+        <h3>Join the waitlist</h3>
+        <input type="email" placeholder="Your email address">
+        <button>Notify Me</button>
+    </section>
+    <footer>
+        © 2025 GriefSpace. All rights reserved.
+    </footer>
+</body>
+</html>
