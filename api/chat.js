@@ -1,47 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>GriefSpace AI Chat</title>
-  <style>
-    body { font-family: sans-serif; padding: 2rem; background: #f7f1f7; color: #333; }
-    #chat { max-width: 600px; margin: 0 auto; }
-    .message { margin: 1rem 0; }
-    .user { font-weight: bold; color: #5e3c6f; }
-    .bot { font-style: italic; color: #333; background-color: #ece2f0; padding: 10px; border-radius: 8px; }
-    textarea { width: 100%; height: 100px; margin-top: 1rem; }
-    button { padding: 10px 20px; margin-top: 10px; background-color: #b18cd9; color: white; border: none; border-radius: 5px; cursor: pointer; }
-    button:hover { background-color: #9e72c2; }
-  </style>
-</head>
-<body>
-  <div id="chat">
-    <h1>Talk to the AI</h1>
-    <div id="messages"></div>
-    <textarea id="input" placeholder="What’s on your mind?"></textarea>
-    <button onclick="sendMessage()">Send</button>
-  </div>
+export default async function handler(req, res) {
+  const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
-  <script>
-    async function sendMessage() {
-      const input = document.getElementById('input');
-      const message = input.value;
-      if (!message) return;
-      input.value = '';
+  const response = await fetch("https://api.openai.com/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${OPENAI_API_KEY}`,
+    },
+    body: JSON.stringify({
+      model: "gpt-4",
+      messages: [
+        {
+          role: "system",
+          content: "You are a warm, supportive grief companion for teens and young adults. You listen calmly, never rush to fix, and always validate feelings.",
+        },
+        {
+          role: "user",
+          content: req.body.message,
+        }
+      ],
+    }),
+  });
 
-      const messagesDiv = document.getElementById('messages');
-      messagesDiv.innerHTML += `<div class='message user'>You: ${message}</div>`;
+  const data = await response.json();
+  const reply = data.choices?.[0]?.message?.content || "I'm here for you.";
 
-      const response = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message })
-      });
-
-      const data = await response.json();
-      messagesDiv.innerHTML += `<div class='message bot'>GriefSpace: ${data.reply}</div>`;
-    }
-  </script>
-</body>
-</html>
+  res.status(200).json({ reply });
+}
