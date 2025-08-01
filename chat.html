@@ -20,10 +20,12 @@
     <h1>Talk to the GriefSpace AI</h1>
     <div id="messages"></div>
     <textarea id="input" placeholder="What's on your mind?"></textarea>
-    <button onclick="sendMessage()">Send</button>
+    <button id="sendBtn">Send</button>
   </div>
 
   <script>
+    document.getElementById("sendBtn").addEventListener("click", sendMessage);
+
     async function sendMessage() {
       const input = document.getElementById('input');
       const message = input.value.trim();
@@ -33,14 +35,21 @@
       const messagesDiv = document.getElementById('messages');
       messagesDiv.innerHTML += `<div class='message user'>You: ${message}</div>`;
 
-      const response = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message })
-      });
+      try {
+        const response = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message })
+        });
 
-      const data = await response.json();
-      messagesDiv.innerHTML += `<div class='message bot'>GriefSpace: ${data.reply}</div>`;
+        const data = await response.json();
+        console.log("🧠 OpenAI raw response:", data);
+
+        messagesDiv.innerHTML += `<div class='message bot'>GriefSpace: ${data.reply}</div>`;
+      } catch (err) {
+        console.error("🔥 Fetch failed:", err);
+        messagesDiv.innerHTML += `<div class='message bot'>GriefSpace: Sorry, something went wrong.</div>`;
+      }
     }
   </script>
 </body>
